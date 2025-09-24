@@ -58,7 +58,7 @@ app.get("/api/tires", async (req, res) => {
         if (lastTwo < 17) price += 12.5;
         else if (lastTwo === 17) price += 15;
         else if ([18, 19].includes(lastTwo)) price += 17.5;
-        else if (lastTwo > 19) price += 20;*//
+        else if (lastTwo > 19) price += 20;*/
 
         // Brand adjustments
         const premiumXBrands = ['Pirelli', 'BFGoodrich', 'Toyo', 'Continental', 'Michelin', 'Bridgeston', 'Yokohama'];
