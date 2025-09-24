@@ -80,8 +80,8 @@ app.get("/api/tires", async (req, res) => {
             // Extract size from system data
             const size = p.specifications?.size || null;
 
-            // ✅ Check if size is valid (starts with 8 digits before the comma)
-            const isValidSize = size && /^\d{8},/.test(size);
+            // ✅ Check if size is valid (starts with 7 digits before the comma)
+            const isValidSize = size && /^\d{7},/.test(size);
 
             if (!isValidSize) {
             return null; // skip invalid sizes
