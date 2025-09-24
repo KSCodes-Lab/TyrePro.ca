@@ -66,8 +66,8 @@ app.get("/api/tires", async (req, res) => {
         if (brand && premiumXBrands.includes(brand)) {
             price += 25;
         }
-       console.log("my Brand is "+brand);
-      console.log("Brand is matching --> "+ (brand && premiumXBrands.includes(brand)))
+     //  console.log("my Brand is "+brand);
+      //console.log("Brand is matching --> "+ (brand && premiumXBrands.includes(brand)))
         if (brand && premiumBrands.includes(brand)) {
             price += 12.5;
         }
