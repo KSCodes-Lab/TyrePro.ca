@@ -48,20 +48,25 @@ app.get("/api/tires", async (req, res) => {
 
         const firstThree = parseInt(sizeStr.slice(0, 3));
         const middleTwo = parseInt(sizeStr.slice(3, 5));
-        const lastTwo = parseInt(sizeStr.slice(5, 7));
+        const lastTwo = parseInt(sizeStr.slice(5));
         let price = basePrice;
 
         // Size adjustments...
-        if (firstThree > 225) price += 50;
-        if (middleTwo > 55) price += 50;
+        if (firstThree > 254) price += 50;
+        if (middleTwo < 41 && lastTwo > 17) price += 50;
 
-        if ([15, 16].includes(lastTwo)) price += 100;
-        else if (lastTwo === 17) price += 120;
-        else if ([18, 19].includes(lastTwo)) price += 140;
-        else if (lastTwo > 19) price += 150;
+        if (lastTwo < 17) price += 50;
+        else if (lastTwo === 17) price += 60;
+        else if ([18, 19].includes(lastTwo)) price += 70;
+        else if (lastTwo > 19) price += 80;
 
         // Brand adjustments
-        const premiumBrands = ['Pirelli', 'PF Goodman', 'Brady', 'Falcon', 'Fistron', 'Hancock'];
+        const premiumBrands = ['Pirelli', 'BFGoodrich', 'Toyo', 'Continental', 'Michelin', 'Bridgeston', 'Yokohama'];
+        if (brand && premiumBrands.includes(brand)) {
+            price +=80;
+        }
+
+      const premiumBrands = ['Firestone', 'Fuzion', 'General', 'Hankook', 'Kumho', 'Laufenn', 'Nexen', 'Uniroyal'];
         if (brand && premiumBrands.includes(brand)) {
             price += 50;
         }
