@@ -52,23 +52,23 @@ app.get("/api/tires", async (req, res) => {
         let price = basePrice;
 
         // Size adjustments...
-        if (firstThree > 254) price += 50;
-        if (middleTwo < 41 && lastTwo > 17) price += 50;
+        if (firstThree > 254) price += 12.5;
+        if (middleTwo < 41 && lastTwo > 17) price += 12.5;
 
-        if (lastTwo < 17) price += 50;
-        else if (lastTwo === 17) price += 60;
-        else if ([18, 19].includes(lastTwo)) price += 70;
-        else if (lastTwo > 19) price += 80;
+        if (lastTwo < 17) price += 12.5;
+        else if (lastTwo === 17) price += 15;
+        else if ([18, 19].includes(lastTwo)) price += 17.5;
+        else if (lastTwo > 19) price += 20;
 
         // Brand adjustments
         const premiumBrands = ['Pirelli', 'BFGoodrich', 'Toyo', 'Continental', 'Michelin', 'Bridgeston', 'Yokohama'];
         if (brand && premiumBrands.includes(brand)) {
-            price +=80;
+            price += 20;
         }
 
       const premiumBrands = ['Firestone', 'Fuzion', 'General', 'Hankook', 'Kumho', 'Laufenn', 'Nexen', 'Uniroyal'];
         if (brand && premiumBrands.includes(brand)) {
-            price += 50;
+            price += 15;
         }
 
         return Math.round(price*100)/100;
