@@ -2,8 +2,27 @@
 const express = require("express");
 const axios = require("axios");
 require("dotenv").config();
+import cors from "cors";
 
 const app = express();
+
+const allowedOrigins = [
+  "http://localhost:3000", 
+  "https://tyrepro.ca/"
+];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+};
+
+app.use(cors(corsOptions));
+
 
 app.get("/api/tires", async (req, res) => {
   try {
@@ -115,5 +134,5 @@ app.get("/api/tires", async (req, res) => {
   }
 });
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
