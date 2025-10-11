@@ -2,7 +2,7 @@
 const express = require("express");
 const axios = require("axios");
 require("dotenv").config();
-import cors from "cors";
+const cors = require("cors");
 
 const app = express();
 
