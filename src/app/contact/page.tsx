@@ -12,7 +12,7 @@ import {
   FaEnvelope,
 } from "react-icons/fa";
 import { useFormik } from "formik";
-
+import { FaClock } from "react-icons/fa6";
 import * as Yup from "yup";
 
 // type FormState = {
@@ -486,7 +486,7 @@ const Page = () => {
                         Visit Us
                       </h4>
                       <p className="text-sm text-gray-600">
-                        123 TyrePro Street, Stoney Creek, ON L8J 2A1
+                       123 Main Street, Stoney Creek, ON, Canada
                       </p>
                     </div>
                   </div>
@@ -500,7 +500,7 @@ const Page = () => {
                         Call Us
                       </h4>
                       <p className="text-sm text-gray-600">
-                        +1 (905) 555-0123, +1 (905) 555-0456
+                       <a href="tel:1-905-923-3101">+1 (905) 923-3101</a>, <a href="tel:431-998-5894">431-998-5894</a>
                       </p>
                     </div>
                   </div>
@@ -514,14 +514,16 @@ const Page = () => {
                         Email
                       </h4>
                       <p className="text-sm text-gray-600">
-                        enquiry@tyrepro.com
+                       <a href="mailto:h.singh@tyrepro.ca" target="_blank">h.singh@tyrepro.ca</a>
+                       {/* <br/> */}
+                       {/* <a href="mailto:a.randhawa@tyrepro.ca"> a.randhawa@tyrepro.ca</a> */}
                       </p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-3">
                     <span className="p-3 rounded-lg bg-[#2d1070] text-white">
-                      <FaEnvelope />
+                      <FaClock />
                     </span>
                     <div>
                       <h4 className="text-sm font-semibold text-gray-900">

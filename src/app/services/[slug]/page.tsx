@@ -22,8 +22,9 @@ const services = [
     description:
       "Wide selection of quality tires with professional installation.",
     longDescription:
-      "We provide a comprehensive range of branded new and used tires. Our professional team ensures precise installation for maximum safety and performance.",
-    image: service1,
+      "At TyrePro, we understand the importance of quality tires for your vehicle's performance and safety. That's why we offer an extensive inventory of top-brand tires to suit every driving style and budget. Our certified technicians are here to help you find the perfect match for your vehicle, whether you're looking for all-season, performance, or off-road tires. When it's time for installation, trust our experts to ensure precision and safety with every tire change. Plus, we provide personalized recommendations based on your vehicle specifications and driving habits, so you can make an informed decision. With our range of tire warranty options, you can drive with confidence, knowing your investment is protected.",
+    // listItem: "Extensive inventory featuring top-brand tires",
+      image: service1,
   },
   {
     slug: "tire-services",
@@ -130,6 +131,10 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
             <p className="text-gray-700 leading-relaxed mb-6">
               {service.longDescription}
             </p>
+
+            <ul className="text-gray-700 leading-relaxed mb-6">
+             {/* <li>{listItem}</li> */}
+            </ul>
 
             <Link
               href="/contact"
