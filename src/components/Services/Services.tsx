@@ -6,26 +6,32 @@ import service2 from "@/assets/banner_bg.jpg"; // Tire Services
 import service3 from "@/assets/banner_bg.jpg"; // Automotive Repair Services
 import service4 from "@/assets/banner_bg.jpg"; // Maintenance Services
 import service5 from "@/assets/banner_bg.jpg"; // Specialty Services
+import Link from "next/link";
 
 const services = [
   {
     title: "Tire Sales and Installation",
+    slug: "/services/tire-sales-installation",
     image: service1,
   },
   {
     title: "Tire Services",
+    slug: "/services/tire-services",
     image: service2,
   },
   {
     title: "Automotive Repair Services",
+     slug: "/services/automotive-repair",
     image: service3,
   },
   {
     title: "Maintenance Services",
+     slug: "/services/maintenance-services",
     image: service4,
   },
   {
     title: "Specialty Services",
+    slug: "/services/specialty-services",
     image: service5,
   },
 ];
@@ -73,9 +79,11 @@ const Services = () => {
                 <h3 className="text-lg font-semibold text-gray-800 mb-4">
                   {service.title}
                 </h3>
+                <Link href={service.slug}>
                 <button className="mt-auto bg-[#2d1070] text-white px-5 py-2 rounded-lg shadow hover:bg-[#46228a] transition cursor-pointer">
                   Learn More
                 </button>
+                </Link>
               </div>
             </div>
           ))}

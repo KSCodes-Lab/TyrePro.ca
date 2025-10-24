@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const Welcome = () => {
@@ -38,12 +39,17 @@ const Welcome = () => {
 
         {/* Call to Action */}
         <div className="mt-10 flex justify-center md:justify-start gap-4">
+          <Link href="/services">
           <button className="bg-[#2d1070] text-white px-6 py-3 rounded-xl shadow hover:bg-[#46228a] transition cursor-pointer">
             Explore Services
           </button>
+          </Link>
+
+          <Link href="/contact">
           <button className="border border-[#2d1070] text-[#2d1070] px-6 py-3 rounded-xl hover:bg-blue-50 transition cursor-pointer">
             Contact Us
           </button>
+          </Link>
         </div>
       </div>
     </section>

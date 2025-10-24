@@ -163,13 +163,13 @@ export default function Testimonials(): JSX.Element {
 
                 {/* CTA or small link */}
                 <div className="mt-6">
-                  <button
+                  {/* <button
                     className="text-sm px-4 py-2 rounded-md bg-[#2d1070] text-white hover:opacity-95"
-                    onClick={() => alert(`View more about ${t.name} (demo)`)}
+                    // onClick={() => alert(`View more about ${t.name} (demo)`)}
                     aria-label={`View more testimonial from ${t.name}`}
                   >
                     Read More
-                  </button>
+                  </button> */}
                 </div>
               </article>
             ))}

@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import ShopImg from "@/assets/banner_bg.jpg";
+import Link from 'next/link';
 
 const InfoSection = () => {
   return (
@@ -22,9 +23,11 @@ const InfoSection = () => {
             exceptional service firsthand.
           </p>
 
+          <Link href="/services">
           <button className="bg-[#2d1070] text-white px-6 py-3 rounded-xl shadow hover:bg-[#46228a] transition cursor-pointer">
             Learn More
           </button>
+          </Link>
         </div>
 
         {/* Right Side - Image */}

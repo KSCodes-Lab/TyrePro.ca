@@ -52,14 +52,14 @@ export const productSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    // builder
-    //   .addCase(fetchProducts.pending, (state) => {
-    //     state.loading = true;
-    //     state.error = null;
-    //     state.isProductList = true;
-    //   })
+    builder
+      .addCase(fetchProducts.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+        state.isProductList = true;
+      })
 
-     builder.addCase(
+     .addCase(
       fetchProducts.fulfilled,
       (state, action: PayloadAction<Product[]>) => {
         state.loading = false;
@@ -67,24 +67,13 @@ export const productSlice = createSlice({
         state.success = true;
         state.isProductList = false;
       }
-    );
-      // builder.addCase(fetchProducts.fulfilled, (state, action: PayloadAction<any>) => {
-        //  console.log("reducer", action);
-        
-        // Try to coerce payload to Product[]
-        // const payload = action.payload;
-        // state.loading = false;
-        // state.productList = action.payload;
-        //  Array.isArray(payload) ? payload : [];
-        // state.success = true;
-        // state.isProductList = false;
-      // })
-      // .addCase(fetchProducts.rejected, (state, action) => {
-      //   state.loading = false;
-      //   state.error = (action.payload as string) || action.error.message || "Failed";
-      //   state.isProductList = false;
-      //   state.success = false;
-      // });
+    )
+      .addCase(fetchProducts.rejected, (state, action) => {
+        state.loading = false;
+        state.error = (action.payload as string) || action.error.message || "Failed";
+        state.isProductList = false;
+        state.success = false;
+      });
   },
 });
 

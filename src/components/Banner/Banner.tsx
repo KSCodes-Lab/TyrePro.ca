@@ -27,10 +27,10 @@ const Banner = () => {
       // transition={{ duration, delay, ease: "easeOut" }}
         >
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-            Find the Perfect Tyres for Your Ride
+           Find the perfect tires for your ride.
           </h1>
           <p className="text-lg md:text-xl text-gray-200 max-w-lg">
-            A satisfied customer is the best business strategy of all.
+            Certified customer is the best business strategy of all.
           </p>
         </motion.div>
 
@@ -42,7 +42,7 @@ const Banner = () => {
         >
           <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md">
             <h2 className="text-2xl font-semibold mb-2 text-gray-800 text-center">
-              Search Tyres
+              Search Tires
             </h2>
             {/* <p className="text-gray-600 text-center mb-6">
               Sign up today and start your journey with us.
@@ -73,7 +73,7 @@ const Banner = () => {
               {activeTab === "size" && (
                 <>
                   <p className="text-gray-600 text-center mb-4">
-                    Search tyres by entering the size details.
+                    Search tires by entering the size details.
                   </p>
                   <input
                     type="text"
@@ -86,7 +86,7 @@ const Banner = () => {
               {activeTab === "vehicle" && (
                 <>
                   <p className="text-gray-600 text-center mb-4">
-                    Search tyres by entering your vehicle name.
+                    Search tires by entering your vehicle name.
                   </p>
                   <input
                     type="text"

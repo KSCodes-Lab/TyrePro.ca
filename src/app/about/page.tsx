@@ -36,7 +36,7 @@ const page = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, amount: 0.5 }}
         transition={{ duration: 0.5 }}
-      className="py-12 md:py-16 px-6 md:px-12 lg:px-20 bg-white container mx-auto">
+      className="py-12 md:py-16 px-6 md:px-12 lg:px-20 bg-white container mx-auto flex items-center justify-center">
         <div className="container mx-auto text-center px-6 lg:px-14">
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold mb-6 text-[#2d1070]">
             Unveiling the Heart of TyrePro: Passion, Precision, and Personalized

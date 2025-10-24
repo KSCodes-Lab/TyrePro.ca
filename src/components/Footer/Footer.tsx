@@ -35,8 +35,7 @@ const Footer = () => {
             </div>
             <div>
               <p className="text-sm">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex
-                necessitatibus ratione necessitatibus ratione.
+                Find the perfect tires for your ride
               </p>
             </div>
             {/* <div>
@@ -113,22 +112,22 @@ const Footer = () => {
             <h4 className="font-semibold mb-4">Services</h4>
             <ul className="space-y-2 text-sm text-yellow-100/90">
               <li>
-                <Link href="/services" className="hover:underline">
+                <Link href="/services/tire-sales-installation" className="hover:underline">
                   Tire Sales and Installation
                 </Link>
               </li>
               <li>
-                <Link href="/support" className="hover:underline">
+                <Link href="/services/specialty-services" className="hover:underline">
                   Specialty Services
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:underline">
+                <Link href="/services/automotive-repair" className="hover:underline">
                   Automotive Repair Services
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:underline">
+                <Link href="/services/maintenance-services" className="hover:underline">
                   Maintenance Services
                 </Link>
               </li>
@@ -138,8 +137,10 @@ const Footer = () => {
           {/* Our Services & Contact */}
           <div>
             <h4 className="font-semibold mb-4">Contact Us</h4>
-            <p className="mb-2">📞 +91 9999 999 999</p>
-            <p className="mb-3">✉️ enquiry@tyrepro.com</p>
+            <p className="mb-2"><a href="tel:1-905-923-3101">📞 1-905-923-3101</a> </p>
+            <p className="mb-3"> <a href="mailto:h.singh@tyrepro.ca" target="_blank">
+                          ✉️ h.singh@tyrepro.ca
+                        </a></p>
 
             <div className="flex items-center gap-3">
               <Link

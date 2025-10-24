@@ -13,7 +13,7 @@ type ProductsType = {
   type: string;
   brand: string;
   size: string;
-  productImgURL?: string | Blob | null; // allow Blob now
+  productImgURL?: string | null;  // allow Blob now
   basePrice?: number;
   price: number;
   qtyAvailable?: number;
@@ -38,10 +38,10 @@ const Page: React.FC = () => {
     () => Array.from(new Set(products.map((p) => p.brand))),
     [products]
   );
-  const ALL_SIZES = useMemo(
-    () => Array.from(new Set(products.map((p) => p.size))),
-    [products]
-  );
+  // const ALL_SIZES = useMemo(
+  //   () => Array.from(new Set(products.map((p) => p.size))),
+  //   [products]  
+  // );
 
   const [search, setSearch] = useState("");
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
@@ -154,7 +154,7 @@ const Page: React.FC = () => {
             </div>
 
             {/* Sizes */}
-            <div className="mb-6">
+            {/* <div className="mb-6">
               <h4 className="text-sm font-medium text-gray-700 mb-3">Sizes</h4>
               <div className="flex flex-col gap-2">
                 {ALL_SIZES.map((size) => (
@@ -172,7 +172,7 @@ const Page: React.FC = () => {
                   </label>
                 ))}
               </div>
-            </div>
+            </div> */}
 
             {/* Price range quick links (visual only) */}
             {/* <div className="mb-6">
@@ -280,7 +280,7 @@ const Page: React.FC = () => {
                       {/* <div className="text-sm text-gray-600">Size: <span className="font-medium text-gray-800">{p.size}</span></div> */}
 
                       <div className="flex items-center gap-2">
-                        <button
+                        {/* <button
                           className="px-3 py-1 text-sm bg-[#2d1070] text-white rounded-md hover:opacity-95"
                           onClick={() =>
                             alert(`Added ${p.brand} to cart (demo)`)
@@ -296,7 +296,7 @@ const Page: React.FC = () => {
                           }
                         >
                           Details
-                        </button>
+                        </button> */}
                       </div>
                     </div>
                   </div>
