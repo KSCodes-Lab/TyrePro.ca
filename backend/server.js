@@ -1,31 +1,10 @@
-// server.js
-const express = require("express");
-const axios = require("axios");
-require("dotenv").config();
-const cors = require("cors");
-
-const app = express();
-
-const allowedOrigins = [
-  "http://localhost:3000", 
-  "https://tyrepro.ca/"
-];
-
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-};
-
-app.use(cors(corsOptions));
-
-
 app.get("/api/tires", async (req, res) => {
   try {
+    const page = parseInt(req.query.page) || 1;      // Default: page 1
+    const limit = parseInt(req.query.limit) || 30;   // Default: 30 results per page
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+
     // 1. Fetch system products
     const systemResp = await axios.get(`${process.env.DISTRIBUTOR_BASE_URL}/product/all`, {
       headers: {
@@ -42,16 +21,13 @@ app.get("/api/tires", async (req, res) => {
     });
     const inventoryData = inventoryResp.data;
 
-    // 3. Build inventory lookup (itemNumber → { price, qtyAvailable })
+    // 3. Build inventory lookup
     const inventoryMap = {};
     inventoryData.forEach((item) => {
-      if (!item.locations || item.locations.length === 0) return; // skip if no locations
+      if (!item.locations || item.locations.length === 0) return;
 
-      const totalQty = item.locations.reduce((sum, loc) => {
-        return sum + (loc.qtyAvailable || 0);
-      }, 0);
-
-      if (totalQty === 0) return; // skip if no stock
+      const totalQty = item.locations.reduce((sum, loc) => sum + (loc.qtyAvailable || 0), 0);
+      if (totalQty === 0) return;
 
       inventoryMap[item.itemNumber] = {
         price: item.pricing?.price || "N/A",
@@ -60,79 +36,59 @@ app.get("/api/tires", async (req, res) => {
     });
 
     function adjustPrice(basePrice, sizeStr, brand) {
+      if (basePrice === "N/A") return basePrice;
 
-        if (basePrice === "N/A") {
-            return basePrice
-        }
+      let price = basePrice + 50;
+      brand = brand.toLowerCase();
 
-        const firstThree = parseInt(sizeStr.slice(0, 3));
-        const middleTwo = parseInt(sizeStr.slice(3, 5));
-        const lastTwo = parseInt(sizeStr.slice(5));
-        let price = basePrice + 50;
+      const premiumXBrands = ["pirelli", "bfgoodrich", "toyo", "continental", "michelin", "bridgestone", "yokohama"];
+      const premiumBrands = ["firestone", "fuzion", "general", "hankook", "kumho", "laufenn", "nexen", "uniroyal"];
 
-        // Size adjustments...
-       /* if (firstThree > 254) price += 12.5;
-        if (middleTwo < 41 && lastTwo > 17) price += 12.5;
+      if (brand && premiumXBrands.includes(brand)) price += 25;
+      if (brand && premiumBrands.includes(brand)) price += 12.5;
 
-        if (lastTwo < 17) price += 12.5;
-        else if (lastTwo === 17) price += 15;
-        else if ([18, 19].includes(lastTwo)) price += 17.5;
-        else if (lastTwo > 19) price += 20;*/
-        brand = brand.toLowerCase();
-        // Brand adjustments
-        const premiumXBrands = ["pirelli", "bfgoodrich", "toyo", "continental", "michelin", "bridgestone", "yokohama"];
-        const premiumBrands = ["firestone", "fuzion", "general", "hankook", "kumho", "laufenn", "nexen", "uniroyal"];
-        if (brand && premiumXBrands.includes(brand)) {
-            price += 25;
-        }
-     //  console.log("my Brand is "+brand);
-      //console.log("Brand is matching --> "+ (brand && premiumXBrands.includes(brand)))
-        if (brand && premiumBrands.includes(brand)) {
-            price += 12.5;
-        }
-
-        return Math.round(price*100)/100;
+      return Math.round(price * 100) / 100;
     }
 
-
-    // Merge system data with inventory
+    // 4. Merge system data with inventory
     const merged = systemData
-        .filter(p => p.type === "Tire")
-        .map(p => {
-            const inv = inventoryMap[p.itemNumber];
-            if (!inv) return null;
+      .filter(p => p.type === "Tire")
+      .map(p => {
+        const inv = inventoryMap[p.itemNumber];
+        if (!inv) return null;
 
-            // Extract size from system data
-            const size = p.specifications?.size || null;
+        const size = p.specifications?.size || null;
+        const isValidSize = size && /^\d{7},/.test(size);
+        if (!isValidSize) return null;
 
-            // ✅ Check if size is valid (starts with 7 digits before the comma)
-            const isValidSize = size && /^\d{7},/.test(size);
-
-            if (!isValidSize) {
-            return null; // skip invalid sizes
-            }
-
-            const sizeForPrice = size.split(',')[0];
+        const sizeForPrice = size.split(",")[0];
 
         return {
-            itemNumber: p.itemNumber,
-            type: p.type,
-            brand: p.brandName || null,
-            size: size,
-            productImgURL: p.productImageUrl || null,
-            basePrice: inv.price || "N/A",
-            price: adjustPrice(inv.price || "N/A", sizeForPrice, p.brandName), 
-            qtyAvailable: inv.qtyAvailable || 0
+          itemNumber: p.itemNumber,
+          type: p.type,
+          brand: p.brandName || null,
+          size,
+          productImgURL: p.productImageUrl || null,
+          basePrice: inv.price || "N/A",
+          price: adjustPrice(inv.price || "N/A", sizeForPrice, p.brandName),
+          qtyAvailable: inv.qtyAvailable || 0,
         };
       })
-      .filter(Boolean); // remove nulls
+      .filter(Boolean);
 
-    res.json(merged);
+    // 5. Apply pagination AFTER merging
+    const paginatedResults = merged.slice(startIndex, endIndex);
+
+    res.json({
+      totalItems: merged.length,
+      totalPages: Math.ceil(merged.length / limit),
+      currentPage: page,
+      itemsPerPage: limit,
+      data: paginatedResults,
+    });
+
   } catch (error) {
     console.error(error.message);
-    res.status(500).json({ error: 'Failed to fetch products' });
+    res.status(500).json({ error: "Failed to fetch products" });
   }
 });
-
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
