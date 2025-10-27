@@ -266,7 +266,7 @@ const Page = () => {
                         <FaTwitter />
                       </a>
                       <a
-                        href="#"
+                        href="https://www.instagram.com/tyreproofficial?igsh=MXV2M3BnOXgycnNqYQ=="
                         aria-label="Instagram"
                         className="p-3 rounded-md bg-[#2d1070] text-white hover:opacity-90"
                       >

@@ -1,42 +1,42 @@
 import React from "react";
 import Image from "next/image";
 // Import your images
-import service1 from "@/assets/banner_bg.jpg"; // Tire Sales and Installation
-import service2 from "@/assets/banner_bg.jpg"; // Tire Services
-import service3 from "@/assets/banner_bg.jpg"; // Automotive Repair Services
-import service4 from "@/assets/banner_bg.jpg"; // Maintenance Services
-import service5 from "@/assets/banner_bg.jpg"; // Specialty Services
+import TireSalesInstallation from "@/assets/Tire_Sales_and_Installation.jpg"; // Tire Sales and Installation
+import SpecialtService from "@/assets/SpecialtService.jpg"; // Tire Services
+import Maintenance_Services from "@/assets/Maintenance_Services.jpg"; // Automotive Repair Services
+import repairServiceImg from "@/assets/repair-service.jpg"; // Maintenance Services
+import tireServices from "@/assets/tire_services.jpg"; // Specialty Services
 import Link from "next/link";
 
 const services = [
   {
     title: "Tire Sales and Installation",
     slug: "/services/tire-sales-installation",
-    image: service1,
+    image: TireSalesInstallation,
   },
   {
     title: "Tire Services",
-    slug: "/services/tire-services",
-    image: service2,
+    slug: "/repairServiceImg/tire-services",
+    image: tireServices,
   },
   {
     title: "Automotive Repair Services",
      slug: "/services/automotive-repair",
-    image: service3,
+    image: repairServiceImg,
   },
   {
     title: "Maintenance Services",
      slug: "/services/maintenance-services",
-    image: service4,
+    image: Maintenance_Services,
   },
   {
     title: "Specialty Services",
     slug: "/services/specialty-services",
-    image: service5,
+    image: SpecialtService,
   },
 ];
 
-const Services = () => {
+const Services = () => { 
   return (
     <section className="bg-white py-16 px-6 md:px-12 lg:px-20">
       <div className="container mx-auto px-8 lg:px-14">

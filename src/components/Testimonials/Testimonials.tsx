@@ -4,13 +4,18 @@
 import React, { JSX, useRef } from "react";
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
+import JohnDImg from "@/assets/John_D.png";
+import SarahMImg from "@/assets/Sarah_M.png";
+import MichaelRImg from "@/assets/Michael_R.png";
+import { StaticImageData } from "next/image";
+
 
 type Testimonial = {
   id: string;
   quote: string;
   name: string;
   role?: string;
-  photo?: string; // path in /public or external URL
+  photo?: string | StaticImageData; // path in /public or external URL
   rating?: number; // 1-5
 };
 
@@ -21,7 +26,7 @@ const TESTIMONIALS: Testimonial[] = [
       "TyrePro exceeded my expectations! The team was knowledgeable, courteous, and went above and beyond to ensure I got the right tires for my vehicle. I highly recommend them!",
     name: "John D",
     role: "Satisfied Customer",
-    photo: "/clients/rajiv.jpg",
+    photo: JohnDImg,
     rating: 5,
   },
   {
@@ -30,7 +35,7 @@ const TESTIMONIALS: Testimonial[] = [
       "I've been a loyal customer of TyrePro for years, and they never disappoint. Their professionalism and attention to detail are unmatched. I wouldn't trust anyone else with my car!",
     name: "Sarah M",
     role: "Local Driver",
-    photo: "/clients/monica.jpg",
+    photo: SarahMImg,
     rating: 5,
   },
   {
@@ -39,7 +44,7 @@ const TESTIMONIALS: Testimonial[] = [
       "The service at TyrePro is exceptional. From the moment I walked in, I felt valued and well taken care of. Their expertise and dedication to customer satisfaction make them my go-to for all my automotive needs.",
     name: "Michael R",
     role: "Family Car Owner",
-    photo: "/clients/peter.jpg",
+    photo: MichaelRImg,
     rating: 5,
   },
 //   {
@@ -115,18 +120,18 @@ export default function Testimonials(): JSX.Element {
             className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-6 overflow-x-auto md:overflow-visible scroll-snap-x snap-mandatory md:snap-none"
             style={{ WebkitOverflowScrolling: "touch" }}
           >
-            {TESTIMONIALS.map((t) => (
+            {TESTIMONIALS.map((item) => (
               <article
-                key={t.id}
+                key={item.id}
                 className="snap-start md:snap-none bg-gray-50 rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-lg transition flex flex-col"
                 role="article"
-                aria-label={`Testimonial by ${t.name}`}
+                aria-label={`Testimonial by ${item.name}`}
               >
                 <div className="flex items-start gap-4">
                   {/* Photo (optional) */}
                   <div className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0 bg-gray-200">
-                    {t.photo ? (
-                      <Image src={t.photo} alt={t.name} width={64} height={64} className="object-cover" />
+                    {item.photo ? (
+                      <Image src={item.photo} alt={item.name} width={64} height={64} className="object-cover" />
                     ) : (
                       <div className="w-full h-full bg-gray-300" />
                     )}
@@ -135,8 +140,8 @@ export default function Testimonials(): JSX.Element {
                   <div className="flex-1">
                     <div className="flex items-center justify-between">
                       <div>
-                        <h3 className="text-sm font-semibold text-gray-900">{t.name}</h3>
-                        {t.role && <p className="text-xs text-gray-500">{t.role}</p>}
+                        <h3 className="text-sm font-semibold text-gray-900">{item.name}</h3>
+                        {item.role && <p className="text-xs text-gray-500">{item.role}</p>}
                       </div>
 
                       {/* Rating */}
@@ -146,7 +151,7 @@ export default function Testimonials(): JSX.Element {
                             key={i}
                             size={14}
                             className={`${
-                              t.rating && i < t.rating ? "text-yellow-400" : "text-gray-300"
+                              item.rating && i < item.rating ? "text-yellow-400" : "text-gray-300"
                             }`}
                             aria-hidden
                           />
@@ -158,7 +163,7 @@ export default function Testimonials(): JSX.Element {
 
                 {/* Quote */}
                 <blockquote className="mt-4 text-gray-700 leading-relaxed text-sm md:text-base flex-grow">
-                  “{t.quote}”
+                  “{item.quote}”
                 </blockquote>
 
                 {/* CTA or small link */}

@@ -144,28 +144,28 @@ const Footer = () => {
 
             <div className="flex items-center gap-3">
               <Link
-                href="https://facebook.com"
+                href="#"
                 className="p-2 rounded-full bg-white text-[#2d1070] hover:opacity-90"
                 aria-label="Facebook"
               >
                 <FaFacebookF size={14} />
               </Link>
               <Link
-                href="https://twitter.com"
+                href="#"
                 className="p-2 rounded-full bg-white text-[#2d1070] hover:opacity-90"
                 aria-label="Twitter"
               >
                 <FaTwitter size={14} />
               </Link>
               <Link
-                href="https://instagram.com"
+                href="https://www.instagram.com/tyreproofficial?igsh=MXV2M3BnOXgycnNqYQ=="
                 className="p-2 rounded-full bg-white text-[#2d1070] hover:opacity-90"
                 aria-label="Instagram"
               >
                 <FaInstagram size={14} />
               </Link>
               <Link
-                href="https://linkedin.com"
+                href="#"
                 className="p-2 rounded-full bg-white text-[#2d1070] hover:opacity-90"
                 aria-label="LinkedIn"
               >
@@ -178,6 +178,7 @@ const Footer = () => {
                   Brands List
                 </a>
               </li>
+
               <li>
                 <a href="/order" className="hover:underline">
                   Order

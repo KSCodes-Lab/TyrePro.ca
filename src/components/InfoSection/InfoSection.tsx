@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import ShopImg from "@/assets/banner_bg.jpg";
+import TyreProShopImg from "@/assets/TyreProShop.jpg";
 import Link from 'next/link';
 
 const InfoSection = () => {
@@ -33,7 +33,7 @@ const InfoSection = () => {
         {/* Right Side - Image */}
         <div className="flex justify-center md:justify-end">
           <Image
-            src={ShopImg}
+            src={TyreProShopImg}
             alt="Quality Tires at TyrePro"
             className="rounded-2xl shadow-lg object-cover w-full h-[300px] md:h-[400px]"
           />

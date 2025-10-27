@@ -1,13 +1,14 @@
+
 // store/reducers/products.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { fetchProducts } from "@/store/actions/products";
+import { fetchProducts, FetchProductsResult } from "@/store/actions/products";
 
 export type Product = {
   itemNumber: string;
   type: string;
   brand: string;
   size: string;
-  productImgURL: string | null; // normalized to string | null for UI
+  productImgURL: string | null;
   basePrice?: number;
   price: number;
   qtyAvailable?: number;
@@ -20,6 +21,10 @@ type ProductsState = {
   error: string | null;
   success: boolean;
   isProductList: boolean;
+  // pagination metadata
+  total?: number;
+  page: number;
+  limit: number;
 };
 
 const initialState: ProductsState = {
@@ -28,6 +33,9 @@ const initialState: ProductsState = {
   error: null,
   success: false,
   isProductList: false,
+  total: undefined,
+  page: 1,
+  limit: 20,
 };
 
 export const productSlice = createSlice({
@@ -38,6 +46,7 @@ export const productSlice = createSlice({
       state.isProductList = true;
       state.success = false;
     },
+    // optional manual setter if you ever want to set products locally:
     productListSuccess: (state, action: PayloadAction<Product[]>) => {
       state.productList = action.payload;
       state.success = true;
@@ -49,6 +58,9 @@ export const productSlice = createSlice({
       state.error = null;
       state.success = false;
       state.isProductList = false;
+      state.total = undefined;
+      state.page = 1;
+      state.limit = 20;
     },
   },
   extraReducers: (builder) => {
@@ -58,19 +70,19 @@ export const productSlice = createSlice({
         state.error = null;
         state.isProductList = true;
       })
-
-     .addCase(
-      fetchProducts.fulfilled,
-      (state, action: PayloadAction<Product[]>) => {
+      .addCase(fetchProducts.fulfilled, (state, action: PayloadAction<FetchProductsResult>) => {
         state.loading = false;
-        state.productList = action.payload;
+        state.productList = action.payload.items;
         state.success = true;
         state.isProductList = false;
-      }
-    )
+        state.total = action.payload.total;
+        state.page = action.payload.page ?? state.page;
+        state.limit = action.payload.limit ?? state.limit;
+        state.error = null;
+      })
       .addCase(fetchProducts.rejected, (state, action) => {
         state.loading = false;
-        state.error = (action.payload as string) || action.error.message || "Failed";
+        state.error = (action.payload as string) || action.error?.message || "Failed";
         state.isProductList = false;
         state.success = false;
       });
@@ -79,3 +91,4 @@ export const productSlice = createSlice({
 
 export const { productListInit, productListSuccess, productListReset } = productSlice.actions;
 export default productSlice.reducer;
+

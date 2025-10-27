@@ -1,3 +1,82 @@
+// "use client";
+
+// import React, { useEffect, useMemo, useState } from "react";
+// import { FaChevronUp, FaSearch } from "react-icons/fa";
+// import { RootState } from "@/store";
+// import { fetchProducts } from "@/store/actions/products";
+// import { useAppDispatch, useAppSelector } from "@/store/hooks";
+// import Image from "next/image";
+// import { FaChevronDown } from "react-icons/fa6";
+
+// type ProductsType = {
+//   itemNumber: string;
+//   type: string;
+//   brand: string;
+//   size: string;
+//   productImgURL?: string | null;  // allow Blob now
+//   basePrice?: number;
+//   price: number;
+//   qtyAvailable?: number;
+//   inStock?: boolean;
+// };
+
+// const Page: React.FC = () => {
+//   const dispatch = useAppDispatch();
+//   const Products = useAppSelector(
+//     (state: RootState) => state?.products?.productList
+//   );
+//   // const { productList, loading, error } = useSelector((state: RootState) => state.products);
+//   const products: ProductsType[] = Products ?? []; // safe fallback
+//   // console.log("Products", Products);
+
+//   useEffect(() => {
+//     dispatch(fetchProducts());
+//   }, [dispatch]);
+
+//   // derive brand and size lists from actual products (memoized)
+//   const ALL_BRANDS = useMemo(
+//     () => Array.from(new Set(products.map((p) => p.brand))),
+//     [products]
+//   );
+//   // const ALL_SIZES = useMemo(
+//   //   () => Array.from(new Set(products.map((p) => p.size))),
+//   //   [products]  
+//   // );
+
+//   const [search, setSearch] = useState("");
+//   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
+//   const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
+//   const [showSidebar, setShowSidebar] = useState(true); // collapsed on small screens via css
+//   const [onlyInStock, setOnlyInStock] = useState(false);
+
+//   const toggleBrand = (brand: string) =>
+//     setSelectedBrands((s) =>
+//       s.includes(brand) ? s.filter((b) => b !== brand) : [...s, brand]
+//     );
+
+//   const toggleSize = (size: string) =>
+//     setSelectedSizes((s) =>
+//       s.includes(size) ? s.filter((x) => x !== size) : [...s, size]
+//     );
+
+//   const filteredProducts = useMemo(() => {
+//     const q = search.trim().toLowerCase();
+//     return Products.filter((product) => {
+//       if (onlyInStock && !product.inStock) return false;
+//       if (selectedBrands.length && !selectedBrands.includes(product.brand))
+//         return false;
+//       if (selectedSizes.length && !selectedSizes.includes(product.size))
+//         return false;
+//       if (!q) return true;
+//       return (
+//         product.type.toLowerCase().includes(q) ||
+//         product.brand.toLowerCase().includes(q) ||
+//         (product.size && product.size.toLowerCase().includes(q)) ||
+//         product.size.toLowerCase().includes(q)
+//       );
+//     });
+//   }, [products, search, selectedBrands, selectedSizes, onlyInStock]);
+
 "use client";
 
 import React, { useEffect, useMemo, useState } from "react";
@@ -13,7 +92,7 @@ type ProductsType = {
   type: string;
   brand: string;
   size: string;
-  productImgURL?: string | null;  // allow Blob now
+  productImgURL?: string | null;
   basePrice?: number;
   price: number;
   qtyAvailable?: number;
@@ -22,31 +101,29 @@ type ProductsType = {
 
 const Page: React.FC = () => {
   const dispatch = useAppDispatch();
-  const Products = useAppSelector(
+  const storeProducts = useAppSelector(
     (state: RootState) => state?.products?.productList
   );
-  // const { productList, loading, error } = useSelector((state: RootState) => state.products);
-  const products: ProductsType[] = Products ?? []; // safe fallback
-  // console.log("Products", Products);
+
+  // Make a stable memoized products array (prevents lint warning)
+  const products: ProductsType[] = useMemo(() => storeProducts ?? [], [
+    storeProducts,
+  ]);
 
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  // derive brand and size lists from actual products (memoized)
+  // derive brand list from memoized products
   const ALL_BRANDS = useMemo(
     () => Array.from(new Set(products.map((p) => p.brand))),
     [products]
   );
-  // const ALL_SIZES = useMemo(
-  //   () => Array.from(new Set(products.map((p) => p.size))),
-  //   [products]  
-  // );
-
+  
   const [search, setSearch] = useState("");
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
-  const [showSidebar, setShowSidebar] = useState(true); // collapsed on small screens via css
+  const [showSidebar, setShowSidebar] = useState(true);
   const [onlyInStock, setOnlyInStock] = useState(false);
 
   const toggleBrand = (brand: string) =>
@@ -54,14 +131,12 @@ const Page: React.FC = () => {
       s.includes(brand) ? s.filter((b) => b !== brand) : [...s, brand]
     );
 
-  const toggleSize = (size: string) =>
-    setSelectedSizes((s) =>
-      s.includes(size) ? s.filter((x) => x !== size) : [...s, size]
-    );
+  // removed unused `toggleSize` (was causing eslint unused var warning)
+  // if you plan to re-enable the Sizes UI, re-add a toggleSize like above.
 
   const filteredProducts = useMemo(() => {
     const q = search.trim().toLowerCase();
-    return Products.filter((product) => {
+    return products.filter((product) => {
       if (onlyInStock && !product.inStock) return false;
       if (selectedBrands.length && !selectedBrands.includes(product.brand))
         return false;
@@ -71,8 +146,7 @@ const Page: React.FC = () => {
       return (
         product.type.toLowerCase().includes(q) ||
         product.brand.toLowerCase().includes(q) ||
-        (product.size && product.size.toLowerCase().includes(q)) ||
-        product.size.toLowerCase().includes(q)
+        (product.size && product.size.toLowerCase().includes(q))
       );
     });
   }, [products, search, selectedBrands, selectedSizes, onlyInStock]);
@@ -323,3 +397,4 @@ const Page: React.FC = () => {
 };
 
 export default Page;
+      

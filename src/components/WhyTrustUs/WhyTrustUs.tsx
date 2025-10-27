@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import WhyTrustUsImg from "@/assets/banner_bg.jpg";
+import WhyTrustUsImg from "@/assets/WhyTrustUs.jpg";
 
 const WhyTrustUs = () => {
   return (

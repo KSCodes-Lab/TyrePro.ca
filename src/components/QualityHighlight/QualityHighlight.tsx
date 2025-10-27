@@ -1,5 +1,5 @@
 import React from 'react';
-import QualityHighlightImg from "@/assets/banner_bg.jpg";
+import QualityHighlightImg from "@/assets/mechanic.jpg";
 import Image from 'next/image';
 
 const QualityHighlight = () => {
