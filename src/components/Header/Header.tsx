@@ -43,7 +43,7 @@ const Header = () => {
               href="/inventary"
               className="hover:text-[#2d1070] transition text-lg font-semibold"
             >
-              Inventary
+              Inventory
             </Link>
             <Link
               href="/contact"
