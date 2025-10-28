@@ -81,7 +81,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link href="/inventary" className="hover:underline">
-                  Inventary
+                  Inventory
                 </Link>
               </li>
               <li>

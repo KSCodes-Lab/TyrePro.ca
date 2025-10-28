@@ -192,7 +192,7 @@ const Page = () => {
                         Visit Us
                       </h4>
                       <p className="text-sm text-gray-600">
-                        123 Main Street, Stoney Creek, ON, Canada
+                        783 Barton St, Hamilton, ON L8E 5G6
                       </p>
                     </div>
                   </div>
@@ -207,6 +207,8 @@ const Page = () => {
                       </h4>
                       <p className="text-sm text-gray-600">
                         <a href="tel:1-905-923-3101">1-905-923-3101</a>
+                        <br />
+                        <a href="tel:1-289-788-8099">1-289-788-8099</a>
                         {/* ,{" "} */}
                         {/* <a href="tel:431-998-5894">431-998-5894</a> */}
                       </p>
@@ -224,6 +226,10 @@ const Page = () => {
                       <p className="text-sm text-gray-600">
                         <a href="mailto:h.singh@tyrepro.ca" target="_blank">
                           h.singh@tyrepro.ca
+                        </a>
+                        <br />
+                        <a href="mailto:h.singh@tyrepro.ca" target="_blank">
+                          a.randhawa@tyrepro.ca
                         </a>
                         {/* <br/> */}
                         {/* <a href="mailto:a.randhawa@tyrepro.ca"> a.randhawa@tyrepro.ca</a> */}
@@ -269,7 +275,8 @@ const Page = () => {
                         <FaTwitter />
                       </a>
                       <a
-                        href="https://www.instagram.com/tyreproofficial?igsh=MXV2M3BnOXgycnNqYQ=="
+                        href="#"
+                       // href="https://www.instagram.com/tyreproofficial?igsh=MXV2M3BnOXgycnNqYQ=="
                         aria-label="Instagram"
                         className="p-3 rounded-md bg-[#2d1070] text-white hover:opacity-90"
                       >
