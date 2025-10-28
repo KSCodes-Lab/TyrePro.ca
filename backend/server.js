@@ -9,7 +9,8 @@ const app = express();
 // ✅ Allow specific frontend origins
 const allowedOrigins = [
   "http://localhost:3000",
-  "https://tyrepro.ca/"
+  "https://tyrepro.ca/",
+  "https://tyrepro.netlify.app/"
 ];
 
 const corsOptions = {
