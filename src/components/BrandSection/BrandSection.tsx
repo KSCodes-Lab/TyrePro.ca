@@ -84,14 +84,14 @@ const BrandSection = () => {
           {brands.map((brand, index) => (
             <div
               key={index}
-              className="flex items-center justify-center border rounded-xl py-6 px-4 shadow-sm hover:shadow-md transition bg-gray-50 text-gray-700 font-medium"
+              className="flex items-center justify-center rounded-xl hover:shadow-md transition text-gray-700 font-medium"
             >
               <Image
                 src={brand.logo}
                 alt={brand.name}
                 className="object-contain"
-                width={120}
-                height={60}
+                width={140}
+                height={80}
               />
             </div>
           ))}

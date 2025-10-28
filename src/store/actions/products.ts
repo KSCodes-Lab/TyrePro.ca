@@ -31,26 +31,26 @@ const getString = (rec: UnknownRecord, ...keys: string[]) => {
   return "";
 };
 
-const getNumber = (rec: UnknownRecord, key: string, fallback = 0) => {
-  const v = rec[key];
-  if (typeof v === "number" && Number.isFinite(v)) return v;
-  if (typeof v === "string" && v.trim() !== "") {
-    const n = Number(v);
-    return Number.isFinite(n) ? n : fallback;
-  }
-  return fallback;
-};
+// const getNumber = (rec: UnknownRecord, key: string, fallback = 0) => {
+//   const v = rec[key];
+//   if (typeof v === "number" && Number.isFinite(v)) return v;
+//   if (typeof v === "string" && v.trim() !== "") {
+//     const n = Number(v);
+//     return Number.isFinite(n) ? n : fallback;
+//   }
+//   return fallback;
+//   };
 
-const getBoolean = (rec: UnknownRecord, key: string) => {
-  const v = rec[key];
-  if (typeof v === "boolean") return v;
-  if (typeof v === "number") return v !== 0;
-  if (typeof v === "string") {
-    const s = v.toLowerCase().trim();
-    return s === "true" || s === "1";
-  }
-  return undefined;
-};
+// const getBoolean = (rec: UnknownRecord, key: string) => {
+//   const v = rec[key];
+//   if (typeof v === "boolean") return v;
+//   if (typeof v === "number") return v !== 0;
+//   if (typeof v === "string") {
+//     const s = v.toLowerCase().trim();
+//     return s === "true" || s === "1";
+//   }
+//   return undefined;
+// };
 
 export const fetchProducts = createAsyncThunk<
   FetchProductsResult,
@@ -58,7 +58,7 @@ export const fetchProducts = createAsyncThunk<
   { rejectValue: string }
 >("products/fetchAll", async (opts = {}, thunkAPI) => {
   try {
-    const { page = 1, limit = 20, search, brand, inStock } = opts;
+    const { page = 1, limit = 9006, search, brand, inStock } = opts;
     const params = new URLSearchParams();
     params.set("page", String(page));
     params.set("limit", String(limit));
@@ -152,6 +152,7 @@ export const fetchProducts = createAsyncThunk<
     return thunkAPI.rejectWithValue("Network error");
   }
 });
+
 
 
 

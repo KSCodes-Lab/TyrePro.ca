@@ -32,11 +32,11 @@ const page = () => {
     <main className="w-full">
       {/* HERO / INTRO */}
       <motion.section 
-       initial={{ opacity: 0, y: 10 }}
+       initial={{ opacity: 0, y: 10 }}  
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, amount: 0.5 }}
         transition={{ duration: 0.5 }}
-      className="py-12 md:py-16 px-6 md:px-12 lg:px-20 bg-white container mx-auto flex items-center justify-center">
+      className="py-8 md:py-10 px-6 md:px-12 lg:px-20 bg-white container mx-auto flex items-center justify-center">
         <div className="container mx-auto text-center px-6 lg:px-14">
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold mb-6 text-[#2d1070]">
             Unveiling the Heart of TyrePro: Passion, Precision, and Personalized
@@ -59,11 +59,11 @@ const page = () => {
       </motion.section>
 
       {/* TEAM SECTION */}
-      <motion.section 
-       initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.5 }}
-        transition={{ duration: 0.5 }}
+      <div
+      //  initial={{ opacity: 0, y: 10 }}
+      //   whileInView={{ opacity: 1, y: 0 }}
+      //   viewport={{ once: false, amount: 0.5 }}
+      //   transition={{ duration: 0.5 }}
         //  transition={{ duration: 0.6, delay: 0.25 }}
       className="py-12 md:py-16 px-6 md:px-12 lg:px-20 bg-[#f3f0fa]">
         <div className="container mx-auto px-6 lg:px-14">
@@ -116,7 +116,7 @@ const page = () => {
             ))}
           </div>
         </div>
-      </motion.section>
+      </div>
 
       {/* MISSION with BACKGROUND IMAGE */}
       <motion.section 

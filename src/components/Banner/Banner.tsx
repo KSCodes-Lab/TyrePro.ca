@@ -3,9 +3,20 @@
 import React, { useState } from "react";
 import BannerBgImg from "@/assets/banner_bg.jpg";
 import { motion } from "motion/react";
+import { useRouter } from "next/navigation"; 
 
 const Banner = () => {
-  const [activeTab, setActiveTab] = useState<"size" | "vehicle">("size");
+  const router = useRouter();
+  const [activeTab, setActiveTab] = useState<"size">("size");
+  const [sizeInput, setSizeInput] = useState<string>(""); 
+  // const [activeTab, setActiveTab] = useState<"size" | "vehicle">("size");
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const size = sizeInput.trim();
+    if (!size) return;
+    // navigate to inventory page and pass size as query param
+    router.push(`/inventary?size=${encodeURIComponent(size)}`);
+  };
 
   return (
     <section
@@ -58,7 +69,7 @@ const Banner = () => {
               >
                 By Size
               </button>
-              <button
+              {/* <button
                 onClick={() => setActiveTab("vehicle")}
                 className={`px-4 py-1 rounded-lg cursor-pointer border transition ${
                   activeTab === "vehicle"
@@ -67,9 +78,10 @@ const Banner = () => {
                 }`}
               >
                 By Vehicle
-              </button>
+              </button> */}
             </div>
-            <form className="space-y-4 mt-4">
+            
+            {/* <form className="space-y-4 mt-4">
               {activeTab === "size" && (
                 <>
                   <p className="text-gray-600 text-center mb-4">
@@ -81,9 +93,9 @@ const Banner = () => {
                     className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2d1070]"
                   />
                 </>
-              )}
+              )} */}
 
-              {activeTab === "vehicle" && (
+              {/* {activeTab === "vehicle" && (
                 <>
                   <p className="text-gray-600 text-center mb-4">
                     Search tires by entering your vehicle name.
@@ -94,15 +106,39 @@ const Banner = () => {
                     className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2d1070]"
                   />
                 </>
-              )}
+              )} */}
 
-              <button
+              {/* <button
                 type="submit"
                 className="w-full bg-[#2d1070] text-white py-2 rounded-lg font-medium hover:bg-[#46228a] transition cursor-pointer"
               >
                 Submit
               </button>
-            </form>
+            </form> */}
+
+            <form className="space-y-4 mt-4" onSubmit={onSubmit}>
+      {activeTab === "size" && (
+        <>
+          <p className="text-gray-600 text-center mb-4">
+            Search tires by entering the size details.
+          </p>
+          <input
+            type="text"
+            placeholder="Enter Size"
+            value={sizeInput}
+            onChange={(e) => setSizeInput(e.target.value)}
+            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2d1070]"
+          />
+        </>
+      )}
+
+      <button
+        type="submit"
+        className="w-full bg-[#2d1070] text-white py-2 rounded-lg font-medium hover:bg-[#46228a] transition cursor-pointer"
+      >
+        Submit
+      </button>
+    </form>
           </div>
         </motion.div>
       </div>
