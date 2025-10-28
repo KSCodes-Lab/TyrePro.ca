@@ -240,7 +240,10 @@ const Page = () => {
                         Business Hours
                       </h4>
                       <p className="text-sm text-gray-600">
-                        Monday to Saturday, 9:30am - 4:30pm
+                        Monday to Friday, 9:00am - 6:00pm
+                      </p>
+                      <p className="text-sm text-gray-600">
+                        Saturday, 9:00am - 4:00pm
                       </p>
                     </div>
                   </div>
