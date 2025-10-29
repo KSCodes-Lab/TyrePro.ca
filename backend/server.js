@@ -10,7 +10,7 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:3000",
   "https://tyrepro.ca/",
-  "https://tyrepro.netlify.app/"
+  "https://tyrepro.netlify.app"
 ];
 
 const corsOptions = {
