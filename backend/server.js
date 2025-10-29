@@ -135,7 +135,6 @@ app.get("/api/tires", async (req, res) => {
           brand: p.brandName || null,
           size: size,
           productImgURL: p.productImageUrl || null,
-          basePrice: inv.price || "N/A",
           price: adjustPrice(inv.price || "N/A", sizeForPrice, p.brandName),
           qtyAvailable: inv.qtyAvailable || 0,
         };
