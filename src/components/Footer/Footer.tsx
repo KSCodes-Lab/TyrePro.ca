@@ -138,7 +138,7 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Contact Us</h4>
             <p className="mb-2"><a href="tel:1-905-923-3101">📞 1-905-923-3101   </a> <a href="tel:1-289-788-8099">📞 1-289-788-8099   </a></p>
-            <p className="mb-3"><a href="mailto:h.singh@tyrepro.ca" target="_blank">✉️ h.singh@tyrepro.ca  </a><a href="mailto:a.randhawa@tyrepro.ca" target="_blank">✉️ a.randhawa@tyrepro.ca  </a></p>
+            <p className="mb-3"><a href="mailto:h.singh@tyrepro.ca" target="_blank">✉️ h.singh@tyrepro.ca  </a><br/><a href="mailto:a.randhawa@tyrepro.ca" target="_blank">✉️ a.randhawa@tyrepro.ca  </a></p>
 
             <div className="flex items-center gap-3">
               <Link
