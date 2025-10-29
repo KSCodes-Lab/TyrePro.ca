@@ -124,7 +124,7 @@ const Banner = () => {
           </p>
           <input
             type="text"
-            placeholder="Enter Size"
+            placeholder="ex. 255/60R17 or 2556017"
             value={sizeInput}
             onChange={(e) => setSizeInput(e.target.value)}
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2d1070]"
