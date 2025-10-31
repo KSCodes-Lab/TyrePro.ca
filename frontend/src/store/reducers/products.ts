@@ -6,6 +6,7 @@ import { fetchProducts, FetchProductsResult } from "@/store/actions/products";
 export type Product = {
   itemNumber: string;
   type: string;
+  model: string;
   brand: string;
   size: string;
   productImgURL: string | null;

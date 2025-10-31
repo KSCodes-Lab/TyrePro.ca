@@ -2,7 +2,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import type { Product } from "@/store/reducers/products";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "https://tyrepro.onrender.com";
+//const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "https://tyrepro.onrender.com";
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:5000";
 
 export type FetchProductsArgs = {
   page?: number;
@@ -108,6 +109,7 @@ export const fetchProducts = createAsyncThunk<
 
       const itemNumber = getString(rec, "itemNumber", "id", "_id");
       const type = getString(rec, "type", "model", "name");
+      const model = getString(rec, "model", "type", "name");
       const brand = getString(rec, "brand", "make", "manufacturer");
       const size = getString(rec, "size", "dimensions");
       const productImgURLRaw = getString(rec, "productImgURL", "image", "img", "photo");
@@ -131,6 +133,7 @@ export const fetchProducts = createAsyncThunk<
       return {
         itemNumber: String(itemNumber),
         type: String(type),
+        model: String(model),
         brand: String(brand),
         size: String(size),
         productImgURL: productImgURL ?? null,

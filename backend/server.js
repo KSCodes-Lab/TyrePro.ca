@@ -8,9 +8,10 @@ const app = express();
 
 // ✅ Allow specific frontend origins
 const allowedOrigins = [
-  "http://localhost:3000",
-  "https://tyrepro.ca/",
-  "https://tyrepro.netlify.app"
+  //"http://localhost:3000",
+  //"http://localhost:5000",
+  "https://tyrepro.ca",
+  //"https://tyrepro.netlify.app"
 ];
 
 const corsOptions = {
@@ -67,6 +68,7 @@ app.get("/api/tires", async (req, res) => {
       inventoryMap[item.itemNumber] = {
         price: item.pricing?.price || "N/A",
         qtyAvailable: totalQty,
+        model: item.model
       };
     });
 
@@ -133,6 +135,7 @@ app.get("/api/tires", async (req, res) => {
           itemNumber: p.itemNumber,
           type: p.type,
           brand: p.brandName || null,
+          model: inv.model,
           size: size,
           productImgURL: p.productImageUrl || null,
           price: adjustPrice(inv.price || "N/A", sizeForPrice, p.brandName),

@@ -413,6 +413,7 @@ import { useSearchParams } from "next/navigation";
 type ProductsType = {
   itemNumber: string;
   type: string;
+  model: string;
   brand: string;
   size: string;
   productImgURL?: string | null;
@@ -796,7 +797,7 @@ useEffect(() => {
                         <h4 className="text-md font-semibold text-gray-900">
                           {p.brand}
                         </h4>
-                        <p className="text-sm text-gray-500">{p.type}</p>
+                        <p className="text-sm text-gray-500">{p.model}</p>
 
                         <p className="text-xs text-gray-500 mt-1">
                           Quantity Available:{" "}

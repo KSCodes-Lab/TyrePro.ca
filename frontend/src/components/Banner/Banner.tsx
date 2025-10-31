@@ -41,7 +41,7 @@ const Banner = () => {
            Find the perfect tires for your ride.
           </h1>
           <p className="text-lg md:text-xl text-gray-200 max-w-lg">
-            Certified customer is the best business strategy of all.
+            Satisfied customer is the best business strategy of all.
           </p>
         </motion.div>
 

@@ -40,7 +40,7 @@ const Header = () => {
             Services
           </Link> */}
             <Link
-              href="/inventary"
+              href="/inventory"
               className="hover:text-[#2d1070] transition text-lg font-semibold"
             >
               Inventory
