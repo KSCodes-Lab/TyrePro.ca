@@ -15,7 +15,7 @@ const Banner = () => {
     const size = sizeInput.trim();
     if (!size) return;
     // navigate to inventory page and pass size as query param
-    router.push(`/inventary?size=${encodeURIComponent(size)}`);
+    router.push(`/inventory?size=${encodeURIComponent(size)}`);
   };
 
   return (

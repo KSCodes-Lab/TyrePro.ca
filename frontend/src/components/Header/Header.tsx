@@ -89,7 +89,7 @@ const Header = () => {
                 className="hover:text-indigo-600 transition"
                 onClick={() => setIsOpen(false)}
               >
-                Inventary
+                inventory
               </Link>
               <Link
                 href="/contact"
